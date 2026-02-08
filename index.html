@@ -44,7 +44,7 @@
 <body>
     <div class="container">
         <h1 class="header_text">To Mariam,</h1>
-			<h1 class="header_text">Will you be my valentine?</h1>
+        <h1 class="header_text question_text">Will you be my valentine?</h1>
         <div class="image_container">
             <!-- Replace with your selected romantic photo -->
             <img src="assets/images/romantic-photo.jpg" alt="Romantic Background">
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <!-- Random GIF container (initially hidden) -->
+    <!-- GIF container (initially hidden) -->
     <img id="randomGif"
         style="opacity: 0.8; display: none; position: fixed; top: 20%; left: 84%; transform: translate(-50%, -50%); max-width: 300px; border: 2px solid #fff; border-radius: 10px; z-index: 1000;"
         alt="Random Gif" />
@@ -64,23 +64,54 @@
         // Prevent overlapping GIFs
         let gifActive = false;
 
-        // Array of GIF URLs – replace these with your actual GIF URLs
+        // Array of GIF URLs
         const gifUrls = [
-            "assets/gifs/Animation_Crying_Sticker.gif",
-            "assets/gifs/Heart_Pink_Sticker.gif",
-            "assets/gifs/Sad_Cry_Sticker_by_chuchuotter.gif",
-            "assets/gifs/Sad_Crypto_Sticker_by_Odd_Otties.gif",
-            "assets/gifs/Sad_Mood_Sticker_by_Odd_Otties.gif"
+            "assets/gifs/gif_1.gif",
+            "assets/gifs/gif_2.gif",
+            "assets/gifs/gif_3.gif",
+            "assets/gifs/gif_4.gif",
+            "assets/gifs/gif_5.gif"
         ];
 
-        // Function to move the "No" button and show a random GIF
+        // Timing controls
+        const GIF_VISIBLE_MS = 1700;
+        const GIF_FADE_MS = 200;
+
+        // Shuffle helper (Fisher-Yates)
+        function shuffleArray(arr) {
+            const a = [...arr];
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        // Start with a shuffled queue
+        let gifQueue = shuffleArray(gifUrls);
+        let currentGifIndex = 0;
+
+        // Get next GIF in sequence; reshuffle after a full cycle
+        function getNextGif() {
+            const gif = gifQueue[currentGifIndex];
+            currentGifIndex++;
+
+            if (currentGifIndex >= gifQueue.length) {
+                gifQueue = shuffleArray(gifUrls); // reshuffle for next cycle
+                currentGifIndex = 0;
+            }
+
+            return gif;
+        }
+
+        // Function to move the "No" button and show the next GIF
         function evadeButton() {
             const noBtn = document.getElementById("noButton");
             const btnWidth = noBtn.offsetWidth;
             const btnHeight = noBtn.offsetHeight;
             const maxX = window.innerWidth - btnWidth;
 
-            // Avoid the top region where the GIF is displayed (e.g., top 25% of the screen)
+            // Avoid the top region where the GIF is displayed
             const minY = window.innerHeight * 0.3;
             const maxY = window.innerHeight - btnHeight;
 
@@ -91,34 +122,31 @@
             noBtn.style.left = randomX + "px";
             noBtn.style.top = randomY + "px";
 
-            // Check if a GIF is already active; if so, exit.
+            // Check if a GIF is already active; if so, exit
             const gifDisplay = document.getElementById("randomGif");
-            if (gifActive) {
-                return;
-            }
+            if (gifActive) return;
             gifActive = true;
 
-            // Pick and display a random GIF
-            const randomIndex = Math.floor(Math.random() * gifUrls.length);
-            const selectedGif = gifUrls[randomIndex];
+            // Pick and display next GIF in shuffled sequence
+            const selectedGif = getNextGif();
             gifDisplay.src = selectedGif;
             gifDisplay.style.display = "block";
             gifDisplay.style.opacity = 0;
-            gifDisplay.style.transition = "opacity 0.5s";
+            gifDisplay.style.transition = `opacity ${GIF_FADE_MS}ms`;
 
-            // Fade in the GIF
+            // Fade in
             setTimeout(() => {
                 gifDisplay.style.opacity = 1;
             }, 25);
 
-            // Keep the GIF visible for 5 seconds, then fade it out smoothly
+            // Keep visible, then fade out
             setTimeout(() => {
                 gifDisplay.style.opacity = 0;
                 setTimeout(() => {
                     gifDisplay.style.display = "none";
                     gifActive = false;
-                }, 250); // Wait for fade-out to complete (500ms)
-            }, 2500);
+                }, GIF_FADE_MS);
+            }, GIF_VISIBLE_MS);
         }
 
         // Function to animate the Yes button and navigate to the next page
@@ -133,7 +161,7 @@
                 origin: { y: 0.6 }
             });
 
-            // Wait for the animation and confetti effect before redirecting
+            // Wait for animation and confetti effect before redirecting
             setTimeout(() => {
                 window.location.href = "yes.html";
             }, 1400);

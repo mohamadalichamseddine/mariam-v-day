@@ -24,16 +24,15 @@ body {
 /* Base header style */
 .header_text {
   font-family: "Sacramento", cursive;
-  font-size: 28px;
+  font-size: 38px;
   margin: 0 0 12px;           /* tighter spacing */
   line-height: 1.05;          /* tighter line box */
   color: #e91e63;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Make only the second title smaller */
-.header_text:nth-of-type(2) {
-  font-size: 20px;            /* reduce this more if needed */
+.question_text {
+  font-size: 38px;
 }
 
 /* Responsive image container */
@@ -42,15 +41,15 @@ body {
 }
 
 .image_container img {
-  width: 36%;
+  width: 36%;                 /* slightly smaller than 40% */
   height: auto;
   border-radius: 10px;
-  margin-bottom: 7px;
+  margin-bottom: 14px;        /* was 20px */
 }
 
 /* Buttons container */
 .buttons {
-  margin-top: 10px;
+  margin-top: 10px;           /* was 20px */
 }
 
 /* Button styling with smooth transitions */
@@ -81,8 +80,8 @@ body {
     font-size: 34px;
     margin-bottom: 10px;
   }
-  .header_text:nth-of-type(2) {
-    font-size: 28px;
+  .question_text {
+    font-size: 30px;
   }
   .btn {
     padding: 12px 24px;
@@ -100,9 +99,8 @@ body {
     width: 90%;
     padding: 14px;
   }
-  .header_text {
-    font-size: 30px;
-    margin-bottom: 8px;
+  .question_text {
+    font-size: 24px;
   }
   .header_text:nth-of-type(2) {
     font-size: 24px;
