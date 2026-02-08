@@ -29,6 +29,10 @@ body {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.header_text:nth-of-type(2) {
+  font-size: 38px;
+}
+
 /* Responsive image container */
 .image_container {
   text-align: center;
@@ -73,6 +77,9 @@ body {
   .header_text {
     font-size: 36px;
   }
+  .header_text:nth-of-type(2) {
+    font-size: 30px;
+  }
   .btn {
     padding: 12px 24px;
     font-size: 16px;
@@ -90,6 +97,9 @@ body {
   }
   .header_text {
     font-size: 32px;
+  }
+  .header_text:nth-of-type(2) {
+    font-size: 24px;
   }
   .image_container img {
     width: 80%;
