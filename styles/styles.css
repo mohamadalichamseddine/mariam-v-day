@@ -24,7 +24,7 @@ body {
 /* Base header style */
 .header_text {
   font-family: "Sacramento", cursive;
-  font-size: 48px;
+  font-size: 38px;
   margin: 0 0 12px;           /* tighter spacing */
   line-height: 1.05;          /* tighter line box */
   color: #e91e63;
@@ -33,7 +33,7 @@ body {
 
 /* Make only the second title smaller */
 .header_text:nth-of-type(2) {
-  font-size: 40px;            /* reduce this more if needed */
+  font-size: 30px;            /* reduce this more if needed */
 }
 
 /* Responsive image container */
