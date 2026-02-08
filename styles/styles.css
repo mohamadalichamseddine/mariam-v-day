@@ -7,30 +7,33 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh; /* safer than fixed height */
 }
 
 /* Semi-transparent container for better text readability */
 .container {
   background-color: rgba(255, 255, 255, 0.85);
   border-radius: 15px;
-  padding: 30px;
+  padding: 22px;              /* was 30px */
   text-align: center;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  width: 60%;  /* wider on larger screens */
+  width: 60%;
+  max-width: 900px;
 }
 
-/* Header styling with a romantic font and text-shadow */
+/* Base header style */
 .header_text {
   font-family: "Sacramento", cursive;
   font-size: 48px;
-  margin-bottom: 20px;
+  margin: 0 0 12px;           /* tighter spacing */
+  line-height: 1.05;          /* tighter line box */
   color: #e91e63;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* Make only the second title smaller */
 .header_text:nth-of-type(2) {
-  font-size: 38px;
+  font-size: 40px;            /* reduce this more if needed */
 }
 
 /* Responsive image container */
@@ -39,15 +42,15 @@ body {
 }
 
 .image_container img {
-  width: 40%; /* Limits the image to 40% of the container/screen width */
+  width: 36%;
   height: auto;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 /* Buttons container */
 .buttons {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 /* Button styling with smooth transitions */
@@ -58,7 +61,7 @@ body {
   padding: 15px 30px;
   font-size: 18px;
   border-radius: 10px;
-  margin: 10px;
+  margin: 8px;                /* was 10px */
   cursor: pointer;
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
@@ -72,20 +75,22 @@ body {
 @media (max-width: 768px) {
   .container {
     width: 80%;
-    padding: 20px;
+    padding: 18px;
   }
   .header_text {
-    font-size: 36px;
+    font-size: 34px;
+    margin-bottom: 10px;
   }
   .header_text:nth-of-type(2) {
-    font-size: 30px;
+    font-size: 28px;
   }
   .btn {
     padding: 12px 24px;
     font-size: 16px;
   }
   .image_container img {
-    width: 60%;
+    width: 52%;
+    margin-bottom: 12px;
   }
 }
 
@@ -93,16 +98,18 @@ body {
 @media (max-width: 480px) {
   .container {
     width: 90%;
-    padding: 15px;
+    padding: 14px;
   }
   .header_text {
-    font-size: 32px;
+    font-size: 30px;
+    margin-bottom: 8px;
   }
   .header_text:nth-of-type(2) {
     font-size: 24px;
   }
   .image_container img {
-    width: 80%;
+    width: 68%;
+    margin-bottom: 10px;
   }
   .btn {
     padding: 10px 20px;
