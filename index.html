@@ -108,7 +108,7 @@
             // Fade in the GIF
             setTimeout(() => {
                 gifDisplay.style.opacity = 1;
-            }, 50);
+            }, 25);
 
             // Keep the GIF visible for 5 seconds, then fade it out smoothly
             setTimeout(() => {
@@ -116,7 +116,7 @@
                 setTimeout(() => {
                     gifDisplay.style.display = "none";
                     gifActive = false;
-                }, 500); // Wait for fade-out to complete (500ms)
+                }, 250); // Wait for fade-out to complete (500ms)
             }, 2500);
         }
 
